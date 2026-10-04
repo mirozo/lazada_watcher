@@ -19,7 +19,7 @@ def _checker(config: Config) -> StockChecker:
 
 def watch(config: Config) -> None:
     telegram = Telegram.from_env()
-    telegram.send(f"👀 Lazada water started, watching {len(config.listings)} listing(s).")
+    telegram.send(f"👀 Lazada watcher started, watching {len(config.listings)} listing(s).")
 
     try:
         with _checker(config) as checker:

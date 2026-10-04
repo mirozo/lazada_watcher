@@ -1,16 +1,14 @@
 listings:
-  # - name: "Pokemon TCG 30th Booster Bundle"
-  #   url: "https://www.lazada.sg/products/pdp-i13933878257-s124956048317.html"
-  # - name: "Pokemon TCG 30th Binder Collection"
-  #   url: "https://www.lazada.sg/products/pdp-i13858060495-s124858893178.html"
-  # - name: "Pokemon TCG Ascended Heroes Booster Bundle"
-  #   url: "https://www.lazada.sg/products/pdp-i13696744288-s124594658123.html"
-  # - name: "Pokemon TCG Ascended Heroes Deluxe Pin Set"
-  #   url: "https://www.lazada.sg/products/pdp-i13664766505-s124315805988.html"
-  # - name: "Pokemon TCG 30th 2 Pack Blister"
-  #   url: "https://www.lazada.sg/products/pdp-i13855587802-s124858735825.html"
-  - name: "TEST"
-    url: "https://www.lazada.sg/products/pdp-i13822368851-s124830542173.html"
+  - name: "Pokemon TCG 30th Booster Bundle"
+    url: "https://www.lazada.sg/products/pdp-i13933878257-s124956048317.html"
+  - name: "Pokemon TCG 30th Binder Collection"
+    url: "https://www.lazada.sg/products/pdp-i13858060495-s124858893178.html"
+  - name: "Pokemon TCG Ascended Heroes Booster Bundle"
+    url: "https://www.lazada.sg/products/pdp-i13696744288-s124594658123.html"
+  - name: "Pokemon TCG Ascended Heroes Deluxe Pin Set"
+    url: "https://www.lazada.sg/products/pdp-i13664766505-s124315805988.html"
+  - name: "Pokemon TCG 30th 2 Pack Blister"
+    url: "https://www.lazada.sg/products/pdp-i13855587802-s124858735825.html"
 
 
 
