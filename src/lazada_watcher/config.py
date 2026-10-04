@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 import os
 from pathlib import Path
+import random
 
 import yaml
 
@@ -16,13 +17,14 @@ class Proxy:
     start_port: int
     count: int = 1
     session_seconds: float = 600
+    port_per_endpoint: bool = True
 
     def endpoints(self) -> list[dict]:
         password = os.environ["PROXY_PASSWORD"]
         return [
             {
-                "server": f"http://{self.host}:{self.start_port + i}",
-                "username": self.username,
+                "server": f"http://{self.host}:{self.start_port + (i if self.port_per_endpoint else 0)}",
+                "username": self.username.format(session=random.randint(10_000_000, 99_999_999)),
                 "password": password,
             }
             for i in range(self.count)

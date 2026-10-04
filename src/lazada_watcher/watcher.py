@@ -27,7 +27,7 @@ def alert_message(listing: Listing, previous: Stock | None, result: StockResult)
     name = escape(listing.name)
     if result.status is Stock.IN_STOCK and previous is not Stock.IN_STOCK:
         price = f"\nPrice: {escape(result.price)}" if result.price else ""
-        return f"🟢 <b>IN STOCK: {name}{price}\n{listing.url}"
+        return f"🟢 IN STOCK: {name}{price}\n{listing.url}"
     
     if result.status is Stock.OUT_OF_STOCK and previous is Stock.IN_STOCK:
         return f"🔴 Sold out again: {name}"
@@ -68,7 +68,7 @@ class Watcher:
                 time.sleep(self._config.captcha_backoff_seconds)
 
             else:
-                jitter = random.uniform(-self._config.poll_interval_seconds, self._config.poll_jitter_seconds)
+                jitter = random.uniform(-self._config.poll_jitter_seconds, self._config.poll_jitter_seconds)
                 time.sleep(max(1.0, self._config.poll_interval_seconds + jitter))
 
     def run_cycle(self) -> bool:

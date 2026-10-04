@@ -17,6 +17,18 @@ BLOCKED_RESOURCE_TYPES = {"image", "media", "font"}
 NAVIGATION_TIMEOUT_MS = 30_000
 STOCK_RENDER_TIMEOUT_MS = 20_000
 
+BLOCKED_URLS = [
+    # ads
+    "*://pagead2.googlesyndication.com/*",
+    "*://googleads.g.doubleclick.net/*",
+    # images
+    "*.jpg*", "*.jpeg*", "*.png*", "*.webp*", "*.gif*", "*.avif*", "*.svg*", "*.ico*",
+    # fonts
+    "*.woff*", "*.woff2*", "*.ttf*", "*.otf*",
+    # media
+    "*.mp4*", "*.webm*", "*.m3u8*", "*.mp3*",
+]
+
 # Need to wait for JS to fetch stock information
 DETECT_STOCK_JS = """
 () => {
@@ -78,8 +90,11 @@ class StockChecker:
             no_viewport=True,
             proxy=proxy,
         )
-        self._context.route("**/*", _block_heavy_resources)
         self._page = self._context.pages[0] if self._context.pages else self._context.new_page()
+        cdp = self._context.new_cdp_session(self._page)
+        cdp.send("Network.enable")
+        cdp.send("Network.setBlockedURLs", {"urls": BLOCKED_URLS})
+        
         self._session_started = time.monotonic()
 
     def rotate_proxy(self) -> None:

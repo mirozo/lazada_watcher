@@ -25,9 +25,17 @@ browser_channel: chrome
 profile_dir: .browser-profile
 state_file: state.json
 
+# proxy:
+#   host: sg.decodo.com
+#   username: spdohxx2ol
+#   start_port: 10001
+#   count: 50            # raise this to expand the pool
+#   session_seconds: 600 # 10 min sticky session
+
 proxy:
-  host: sg.decodo.com
-  username: spdohxx2ol
-  start_port: 10001
-  count: 50            # raise this to expand the pool
-  session_seconds: 600 # 10 min sticky session
+  host: resi-fr1.redscrape.com
+  username: "u169032809s1069-country-SG-session-{session}-lifetime-10"
+  start_port: 6666
+  port_per_endpoint: false
+  count: 50
+  session_seconds: 540
