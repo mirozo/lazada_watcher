@@ -1,0 +1,5 @@
+2026/10/04-11:35:33.473 38abb2 Creating DB /Users/gohruizhi/Code/playground/lazada_watcher/.browser-profile/Default/Local Storage/leveldb since it was missing.
+2026/10/04-11:35:33.480 38abb2 Reusing MANIFEST /Users/gohruizhi/Code/playground/lazada_watcher/.browser-profile/Default/Local Storage/leveldb/MANIFEST-000001
+2026/10/04-11:36:33.490 38abb5 Level-0 table #5: started
+2026/10/04-11:36:33.497 38abb5 Level-0 table #5: 234245 bytes OK
+2026/10/04-11:36:33.500 38abb5 Delete type=0 #3
