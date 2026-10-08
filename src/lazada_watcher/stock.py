@@ -121,12 +121,20 @@ class StockChecker:
 
 
     def check(self, url: str) -> StockResult:
-        try:
-            self._page.goto(url, wait_until="domcontentloaded", timeout=NAVIGATION_TIMEOUT_MS)
-            status = Stock(self._page.wait_for_function(DETECT_STOCK_JS, timeout=STOCK_RENDER_TIMEOUT_MS).json_value())
-        except PlaywrightError as error:
-            logger.warning("Could not determine stock for %s: %s", url, error.message.splitlines()[0])
-            return StockResult(Stock.UNKNOWN)
+        self._rotate_proxy_if_due()
+        for attempt in range(2):
+            try:
+                self._page.goto(url, wait_until="domcontentloaded", timeout=NAVIGATION_TIMEOUT_MS)
+                status = Stock(self._page.wait_for_function(DETECT_STOCK_JS, timeout=STOCK_RENDER_TIMEOUT_MS).json_value())
+            except PlaywrightError as error:
+                message = error.message.splitlines()[0]
+                if attempt == 0 and "ERR_TUNNEL_CONNECTION_FAILED" in message:
+                    logger.warning("Proxy failed (%s); rotating and retrying once", message)
+                    self.rotate_proxy()
+                    continue
+
+                logger.warning("Could not determine stock for %s: %s", url, error.message.splitlines()[0])
+                return StockResult(Stock.UNKNOWN)
         
         price = self._page.evaluate(READ_PRICE_JS) if status is Stock.IN_STOCK else None
         return StockResult(status, price)

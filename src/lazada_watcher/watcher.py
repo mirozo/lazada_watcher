@@ -85,7 +85,7 @@ class Watcher:
                 return True
             
             if self._captcha_alerted and result.status is not Stock.UNKNOWN:
-                self._notify("✅ Captcha cleared, stock checks are working again.")
+                # self._notify("✅ Captcha cleared, stock checks are working again.")
                 self._captcha_alerted = False
 
             self._on_result(listing, result)
@@ -102,10 +102,10 @@ class Watcher:
         backoff_minutes = self._config.captcha_backoff_seconds / 60
         logger.warning("Captcha encountered, backing off for %.0f minutes", backoff_minutes)
         if not self._captcha_alerted:
-            self._notify(
-                f"⚠️ Lazada served a captcha on {escape(listing.name)}. "
-                f"Retrying every {backoff_minutes:.0f} minutes, you will get a message once it clears."
-            )
+            # self._notify(
+            #     f"⚠️ Lazada served a captcha on {escape(listing.name)}. "
+            #     f"Retrying every {backoff_minutes:.0f} minutes, you will get a message once it clears."
+            # )
             self._captcha_alerted = True
 
     def _on_result(self, listing: Listing, result: StockResult) -> None:
